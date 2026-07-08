@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pasar Angka — Belajar Perkalian & Pembagian Kelas 3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --mango:#FFC145;
+    --mango-dark:#F2A400;
+    --watermelon:#FF6F91;
+    --watermelon-dark:#E14C6F;
+    --leaf:#3FAE7A;
+    --leaf-dark:#2C8F62;
+    --sky:#EAF6FF;
+    --plum:#3C2A4D;
+    --plum-soft:#6B5A7D;
+    --basket:#A9744F;
+    --basket-light:#E8CBAE;
+    --cream:#FFF8EC;
+    --white:#FFFFFF;
+    --shadow: 0 6px 0 rgba(60,42,77,0.18);
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:'Nunito', sans-serif;
+    background:
+      radial-gradient(circle at 10% 10%, #DFF3FF 0%, transparent 45%),
+      radial-gradient(circle at 90% 0%, #FFE9C7 0%, transparent 40%),
+      var(--sky);
+    color:var(--plum);
+    min-height:100vh;
+    padding-bottom:60px;
+  }
+  h1,h2,h3, .display{
+    font-family:'Baloo 2', sans-serif;
+  }
+
+  /* ---------- HEADER / STALL SIGN ---------- */
+  header{
+    text-align:center;
+    padding:34px 16px 26px;
+    position:relative;
+  }
+  .stall-sign{
+    display:inline-block;
+    background:var(--watermelon);
+    color:var(--white);
+    padding:16px 32px;
+    border-radius:18px;
+    border:5px solid var(--white);
+    box-shadow:var(--shadow), 0 0 0 5px var(--watermelon-dark);
+    transform:rotate(-1.5deg);
+    font-size:2.1rem;
+    font-weight:800;
+    letter-spacing:0.5px;
+  }
+  header p{
+    margin-top:14px;
+    font-size:1.05rem;
+    color:var(--plum-soft);
+    font-weight:700;
+  }
+  .fruit-row{
+    font-size:1.6rem;
+    margin-top:6px;
+    letter-spacing:6px;
+  }
+
+  /* ---------- NAV TABS ---------- */
+  nav{
+    display:flex;
+    justify-content:center;
+    gap:14px;
+    flex-wrap:wrap;
+    margin:10px auto 30px;
+    padding:0 16px;
+  }
+  .tab-btn{
+    font-family:'Baloo 2', sans-serif;
+    font-size:1.15rem;
+    font-weight:700;
+    padding:12px 26px;
+    border-radius:16px;
+    border:none;
+    cursor:pointer;
+    background:var(--white);
+    color:var(--plum-soft);
+    box-shadow:var(--shadow);
+    transition:transform .15s ease;
+  }
+  .tab-btn:hover{transform:translateY(-2px);}
+  .tab-btn.active{
+    background:var(--leaf);
+    color:var(--white);
+    box-shadow:0 6px 0 var(--leaf-dark);
+  }
+  .tab-btn:focus-visible{outline:3px solid var(--plum); outline-offset:2px;}
+
+  main{
+    max-width:900px;
+    margin:0 auto;
+    padding:0 18px;
+  }
+  section{display:none;}
+  section.active{display:block; animation:fadeIn .35s ease;}
+  @keyframes fadeIn{from{opacity:0; transform:translateY(8px);} to{opacity:1; transform:translateY(0);}}
+
+  /* ---------- CARD ---------- */
+  .card{
+    background:var(--white);
+    border-radius:22px;
+    padding:26px 26px 30px;
+    box-shadow:var(--shadow);
+    margin-bottom:26px;
+    border:3px solid var(--basket-light);
+  }
+  .card h2{
+    margin-top:0;
+    font-size:1.5rem;
+    color:var(--watermelon-dark);
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .badge{
+    display:inline-block;
+    background:var(--mango);
+    color:var(--plum);
+    font-family:'Baloo 2';
+    font-weight:700;
+    font-size:.85rem;
+    padding:4px 12px;
+    border-radius:999px;
+    margin-bottom:10px;
+  }
+
+  /* ---------- MATERI CONTENT ---------- */
+  .basket-visual{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin:14px 0;
+    justify-content:center;
+  }
+  .basket{
+    background:var(--basket-light);
+    border:3px solid var(--basket);
+    border-radius:14px;
+    padding:10px 14px;
+    font-size:1.6rem;
+    min-width:64px;
+    text-align:center;
+  }
+  .example-box{
+    background:var(--cream);
+    border-left:6px solid var(--mango-dark);
+    border-radius:10px;
+    padding:14px 18px;
+    margin:16px 0;
+  }
+  .example-box strong{color:var(--watermelon-dark);}
+  .step{
+    margin:6px 0;
+    padding-left:6px;
+  }
+  .big-num{
+    font-family:'Baloo 2';
+    font-size:1.4rem;
+    color:var(--leaf-dark);
+    font-weight:800;
+  }
+  .materi-nav{
+    display:flex;
+    justify-content:space-between;
+    margin-top:10px;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+  .small-btn{
+    font-family:'Baloo 2';
+    background:var(--sky);
+    border:2px solid #BFE3FF;
+    color:var(--plum);
+    padding:8px 18px;
+    border-radius:12px;
+    cursor:pointer;
+    font-weight:700;
+  }
+  .small-btn:hover{background:#dcf0ff;}
+  .dots{
+    text-align:center;
+    margin-top:6px;
+    font-size:.8rem;
+    color:var(--plum-soft);
+  }
+
+  /* ---------- GAME ---------- */
+  .game-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .stat{
+    font-family:'Baloo 2';
+    background:var(--sky);
+    padding:8px 16px;
+    border-radius:12px;
+    font-weight:700;
+    font-size:1rem;
+  }
+  #timerStat.warn{background:#FFE1E1; color:var(--watermelon-dark);}
+
+  .basket-progress{
+    display:flex;
+    gap:6px;
+    justify-content:center;
+    margin:6px 0 20px;
+  }
+  .basket-progress span{
+    font-size:1.5rem;
+    opacity:.25;
+    transition:opacity .3s, transform .3s;
+  }
+  .basket-progress span.filled{opacity:1; transform:scale(1.15);}
+
+  .question-box{
+    text-align:center;
+    padding:18px 10px 8px;
+  }
+  .question-box .q-fruit{font-size:2.4rem;}
+  .question-box .q-text{
+    font-family:'Baloo 2';
+    font-size:1.8rem;
+    color:var(--plum);
+    margin:10px 0 22px;
+    font-weight:700;
+  }
+  .options{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+    max-width:460px;
+    margin:0 auto;
+  }
+  @media (max-width:480px){ .options{grid-template-columns:1fr;} }
+  .opt-btn{
+    font-family:'Baloo 2';
+    font-size:1.3rem;
+    font-weight:700;
+    padding:16px;
+    border-radius:16px;
+    border:none;
+    background:var(--mango);
+    color:var(--plum);
+    cursor:pointer;
+    box-shadow:0 5px 0 var(--mango-dark);
+    transition:transform .1s;
+  }
+  .opt-btn:hover{transform:translateY(-2px);}
+  .opt-btn:active{transform:translateY(2px); box-shadow:0 2px 0 var(--mango-dark);}
+  .opt-btn.correct{background:var(--leaf); color:var(--white); box-shadow:0 5px 0 var(--leaf-dark);}
+  .opt-btn.wrong{background:var(--watermelon); color:var(--white); box-shadow:0 5px 0 var(--watermelon-dark);}
+  .opt-btn:disabled{cursor:default;}
+  .feedback{
+    min-height:30px;
+    font-family:'Baloo 2';
+    font-weight:700;
+    font-size:1.15rem;
+    margin-top:16px;
+    text-align:center;
+  }
+  .feedback.good{color:var(--leaf-dark);}
+  .feedback.bad{color:var(--watermelon-dark);}
+
+  .start-screen, .end-screen{
+    text-align:center;
+    padding:20px 10px;
+  }
+  .primary-btn{
+    font-family:'Baloo 2';
+    font-size:1.2rem;
+    font-weight:700;
+    padding:14px 34px;
+    border-radius:16px;
+    border:none;
+    background:var(--watermelon);
+    color:var(--white);
+    cursor:pointer;
+    box-shadow:0 6px 0 var(--watermelon-dark);
+    margin-top:10px;
+  }
+  .primary-btn:hover{transform:translateY(-2px);}
+  .primary-btn:active{transform:translateY(3px); box-shadow:0 3px 0 var(--watermelon-dark);}
+  .end-emoji{font-size:3.2rem;}
+  .end-score{
+    font-family:'Baloo 2';
+    font-size:2.2rem;
+    color:var(--leaf-dark);
+    font-weight:800;
+    margin:6px 0 4px;
+  }
+  .end-msg{font-size:1.05rem; color:var(--plum-soft); font-weight:700;}
+
+  footer{
+    text-align:center;
+    color:var(--plum-soft);
+    font-size:.85rem;
+    margin-top:20px;
+    font-weight:700;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important; transition:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="stall-sign">🍉 PASAR ANGKA 🍇</div>
+  <p>Belajar Perkalian &amp; Pembagian sambil Berjualan Buah</p>
+  <div class="fruit-row">🍎 🍌 🍊 🍓 🥭</div>
+</header>
+
+<nav>
+  <button class="tab-btn active" data-tab="materi" onclick="switchTab('materi')">📖 Materi</button>
+  <button class="tab-btn" data-tab="game" onclick="switchTab('game')">🎮 Main Game</button>
+</nav>
+
+<main>
+
+  <!-- ================= MATERI SECTION ================= -->
+  <section id="materi" class="active">
+
+    <div class="card" id="slide-0">
+      <span class="badge">Kenalan Dulu</span>
+      <h2>👋 Selamat Datang di Pasar Angka!</h2>
+      <p>Hai, Sahabat Pintar! Di pasar ini kamu akan bantu <strong>Kak Tara</strong> menyusun buah-buahan ke dalam keranjang. Sambil menyusun, kita akan belajar dua hal penting: <strong>perkalian</strong> dan <strong>pembagian</strong>.</p>
+      <div class="basket-visual">
+        <div class="basket">🍎🍎🍎</div>
+        <div class="basket">🍎🍎🍎</div>
+        <div class="basket">🍎🍎🍎</div>
+      </div>
+      <p style="text-align:center">3 keranjang, isi 3 apel setiap keranjang. Ini adalah gambaran perkalian!</p>
+    </div>
+
+    <div class="card" id="slide-1" style="display:none">
+      <span class="badge">Materi 1</span>
+      <h2>✖️ Apa itu Perkalian?</h2>
+      <p><strong>Perkalian</strong> adalah cara cepat untuk menjumlahkan bilangan yang sama berulang kali.</p>
+      <div class="example-box">
+        <strong>Contoh:</strong> Kak Tara punya 4 keranjang, setiap keranjang berisi 3 jeruk.
+        <div class="basket-visual">
+          <div class="basket">🍊🍊🍊</div>
+          <div class="basket">🍊🍊🍊</div>
+          <div class="basket">🍊🍊🍊</div>
+          <div class="basket">🍊🍊🍊</div>
+        </div>
+        <div class="step">Cara panjang: 3 + 3 + 3 + 3 = 12</div>
+        <div class="step">Cara cepat (perkalian): <span class="big-num">4 × 3 = 12</span></div>
+        <p>Jadi, total jeruk Kak Tara ada <span class="big-num">12 buah</span> 🍊</p>
+      </div>
+      <div class="example-box">
+        <strong>Contoh lain:</strong> 5 keranjang, isi 2 pisang setiap keranjang.<br>
+        <span class="big-num">5 × 2 = 10</span> pisang 🍌
+      </div>
+      <p>💡 <strong>Ingat:</strong> banyak keranjang × isi tiap keranjang = jumlah semuanya.</p>
+    </div>
+
+    <div class="card" id="slide-2" style="display:none">
+      <span class="badge">Materi 2</span>
+      <h2>➗ Apa itu Pembagian?</h2>
+      <p><strong>Pembagian</strong> adalah cara membagi sekumpulan benda menjadi beberapa bagian yang sama banyak.</p>
+      <div class="example-box">
+        <strong>Contoh:</strong> Kak Tara punya 12 mangga, akan dibagi rata ke dalam 3 keranjang. Berapa isi tiap keranjang?
+        <div class="basket-visual">
+          <div class="basket">🥭🥭🥭🥭</div>
+          <div class="basket">🥭🥭🥭🥭</div>
+          <div class="basket">🥭🥭🥭🥭</div>
+        </div>
+        <div class="step">Cara pembagian: <span class="big-num">12 ÷ 3 = 4</span></div>
+        <p>Jadi, setiap keranjang berisi <span class="big-num">4 mangga</span> 🥭</p>
+      </div>
+      <div class="example-box">
+        <strong>Contoh lain:</strong> 15 stroberi dibagi ke dalam 5 keranjang.<br>
+        <span class="big-num">15 ÷ 5 = 3</span> stroberi tiap keranjang 🍓
+      </div>
+      <p>💡 <strong>Ingat:</strong> pembagian adalah kebalikan dari perkalian. Kalau 4 × 3 = 12, maka 12 ÷ 3 = 4 dan 12 ÷ 4 = 3.</p>
+    </div>
+
+    <div class="card" id="slide-3" style="display:none">
+      <span class="badge">Ringkasan</span>
+      <h2>🎯 Siap untuk Bermain?</h2>
+      <p>Sekarang kamu sudah tahu:</p>
+      <ul style="font-weight:700; line-height:1.8;">
+        <li>✖️ Perkalian = penjumlahan berulang (banyak keranjang × isi tiap keranjang)</li>
+        <li>➗ Pembagian = membagi rata ke beberapa keranjang</li>
+      </ul>
+      <p>Yuk uji kemampuanmu di menu <strong>🎮 Main Game</strong> dan bantu Kak Tara menyelesaikan pesanan pasar!</p>
+      <div style="text-align:center">
+        <button class="primary-btn" onclick="switchTab('game')">Main Game Sekarang 🎮</button>
+      </div>
+    </div>
+
+    <div class="materi-nav">
+      <button class="small-btn" onclick="prevSlide()">⬅ Sebelumnya</button>
+      <span class="dots" id="slideDots">Halaman 1 dari 4</span>
+      <button class="small-btn" onclick="nextSlide()">Berikutnya ➡</button>
+    </div>
+  </section>
+
+  <!-- ================= GAME SECTION ================= -->
+  <section id="game">
+    <div class="card">
+
+      <div id="startScreen" class="start-screen">
+        <div class="end-emoji">🧺</div>
+        <h2 style="margin-bottom:4px;">Bantu Kak Tara di Pasar!</h2>
+        <p>Jawab 10 soal perkalian &amp; pembagian sebelum waktu habis. Setiap jawaban benar akan mengisi keranjangmu!</p>
+        <button class="primary-btn" onclick="startGame()">Mulai Bermain 🍉</button>
+      </div>
+
+      <div id="playScreen" style="display:none">
+        <div class="game-top">
+          <div class="stat">⭐ Skor: <span id="scoreStat">0</span></div>
+          <div class="stat">🧺 Soal: <span id="qNumStat">1</span>/10</div>
+          <div class="stat" id="timerStat">⏱️ <span id="timeStat">15</span> dtk</div>
+        </div>
+
+        <div class="basket-progress" id="basketProgress"></div>
+
+        <div class="question-box">
+          <div class="q-fruit" id="qFruit">🍎</div>
+          <div class="q-text" id="qText">3 × 4 = ?</div>
+          <div class="options" id="optionsBox"></div>
+          <div class="feedback" id="feedback"></div>
+        </div>
+      </div>
+
+      <div id="endScreen" class="end-screen" style="display:none">
+        <div class="end-emoji" id="endEmoji">🏆</div>
+        <h2>Pasar Hari Ini Selesai!</h2>
+        <div class="end-score" id="finalScore">0 / 10</div>
+        <p class="end-msg" id="endMsg"></p>
+        <button class="primary-btn" onclick="startGame()">Main Lagi 🔁</button>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>Dibuat untuk media pembelajaran Matematika Kelas 3 SD 🍉📚</footer>
+
+<script>
+/* ---------------- TAB SWITCH ---------------- */
+function switchTab(tab){
+  document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));
+  document.getElementById(tab).classList.add('active');
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.toggle('active', b.dataset.tab===tab));
+}
+
+/* ---------------- MATERI SLIDES ---------------- */
+let currentSlide = 0;
+const totalSlides = 4;
+function showSlide(i){
+  for(let n=0;n<totalSlides;n++){
+    document.getElementById('slide-'+n).style.display = (n===i) ? 'block' : 'none';
+  }
+  document.getElementById('slideDots').textContent = `Halaman ${i+1} dari ${totalSlides}`;
+  currentSlide = i;
+}
+function nextSlide(){ if(currentSlide < totalSlides-1) showSlide(currentSlide+1); }
+function prevSlide(){ if(currentSlide > 0) showSlide(currentSlide-1); }
+
+/* ---------------- GAME LOGIC ---------------- */
+const fruitEmojis = ['🍎','🍌','🍊','🍓','🥭','🍇','🍍','🍑'];
+let questions = [];
+let currentQ = 0;
+let score = 0;
+let timer = null;
+let timeLeft = 15;
+
+function generateQuestions(){
+  const qs = [];
+  for(let i=0;i<10;i++){
+    let isMultiply = Math.random() < 0.5;
+    let a, b, answer, text;
+    if(isMultiply){
+      a = Math.floor(Math.random()*9)+2; // 2-10
+      b = Math.floor(Math.random()*9)+2;
+      answer = a*b;
+      text = `${a} × ${b} = ?`;
+    } else {
+      b = Math.floor(Math.random()*9)+2;
+      answer = Math.floor(Math.random()*9)+2;
+      a = b*answer;
+      text = `${a} ÷ ${b} = ?`;
+    }
+    // buat 3 pengecoh
+    let opts = new Set([answer]);
+    while(opts.size < 4){
+      let delta = Math.floor(Math.random()*6)-3;
+      let fake = answer + delta;
+      if(fake > 0 && fake !== answer) opts.add(fake);
+    }
+    let optsArr = Array.from(opts).sort(()=>Math.random()-0.5);
+    qs.push({text, answer, options:optsArr, fruit: fruitEmojis[Math.floor(Math.random()*fruitEmojis.length)]});
+  }
+  return qs;
+}
+
+function startGame(){
+  questions = generateQuestions();
+  currentQ = 0;
+  score = 0;
+  document.getElementById('startScreen').style.display='none';
+  document.getElementById('endScreen').style.display='none';
+  document.getElementById('playScreen').style.display='block';
+  buildBasketProgress();
+  updateStats();
+  loadQuestion();
+}
+
+function buildBasketProgress(){
+  const box = document.getElementById('basketProgress');
+  box.innerHTML = '';
+  for(let i=0;i<10;i++){
+    const span = document.createElement('span');
+    span.textContent = '🧺';
+    span.id = 'basket-'+i;
+    box.appendChild(span);
+  }
+}
+
+function updateStats(){
+  document.getElementById('scoreStat').textContent = score;
+  document.getElementById('qNumStat').textContent = Math.min(currentQ+1,10);
+}
+
+function loadQuestion(){
+  clearInterval(timer);
+  timeLeft = 15;
+  const t = document.getElementById('timeStat');
+  const timerStat = document.getElementById('timerStat');
+  t.textContent = timeLeft;
+  timerStat.classList.remove('warn');
+  timer = setInterval(()=>{
+    timeLeft--;
+    t.textContent = timeLeft;
+    if(timeLeft <= 5) timerStat.classList.add('warn');
+    if(timeLeft <= 0){
+      clearInterval(timer);
+      handleAnswer(null);
+    }
+  }, 1000);
+
+  const q = questions[currentQ];
+  document.getElementById('qFruit').textContent = q.fruit;
+  document.getElementById('qText').textContent = q.text;
+  document.getElementById('feedback').textContent = '';
+  document.getElementById('feedback').className = 'feedback';
+
+  const box = document.getElementById('optionsBox');
+  box.innerHTML = '';
+  q.options.forEach(opt=>{
+    const btn = document.createElement('button');
+    btn.className = 'opt-btn';
+    btn.textContent = opt;
+    btn.onclick = ()=>handleAnswer(opt, btn);
+    box.appendChild(btn);
+  });
+  updateStats();
+}
+
+function handleAnswer(selected, btnEl){
+  clearInterval(timer);
+  const q = questions[currentQ];
+  const allBtns = document.querySelectorAll('.opt-btn');
+  allBtns.forEach(b=>{
+    b.disabled = true;
+    if(parseInt(b.textContent) === q.answer) b.classList.add('correct');
+  });
+  const feedback = document.getElementById('feedback');
+
+  if(selected === q.answer){
+    score++;
+    document.getElementById('basket-'+currentQ).classList.add('filled');
+    feedback.textContent = '🎉 Benar sekali! Kak Tara senang!';
+    feedback.className = 'feedback good';
+  } else {
+    if(btnEl) btnEl.classList.add('wrong');
+    feedback.textContent = selected===null ? `⏰ Waktu habis! Jawaban: ${q.answer}` : `😅 Belum tepat. Jawaban: ${q.answer}`;
+    feedback.className = 'feedback bad';
+  }
+  updateStats();
+
+  setTimeout(()=>{
+    currentQ++;
+    if(currentQ < 10){
+      loadQuestion();
+    } else {
+      endGame();
+    }
+  }, 1400);
+}
+
+function endGame(){
+  document.getElementById('playScreen').style.display='none';
+  document.getElementById('endScreen').style.display='block';
+  document.getElementById('finalScore').textContent = `${score} / 10`;
+  const emoji = document.getElementById('endEmoji');
+  const msg = document.getElementById('endMsg');
+  if(score >= 9){ emoji.textContent='🏆'; msg.textContent='Luar biasa! Kamu jagoan Pasar Angka!'; }
+  else if(score >= 7){ emoji.textContent='🌟'; msg.textContent='Bagus sekali! Sedikit lagi jadi juara pasar!'; }
+  else if(score >= 5){ emoji.textContent='😊'; msg.textContent='Kerja bagus! Yuk baca materi lagi lalu coba sekali lagi.'; }
+  else { emoji.textContent='💪'; msg.textContent='Jangan menyerah! Baca materi dulu ya, lalu coba lagi.'; }
+}
+</script>
+</body>
+</html>
